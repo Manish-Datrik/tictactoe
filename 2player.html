@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        *{
+            background-color: lightpink;
+        }
+        .board {
+                height: 230px;
+                width: 220px;
+                margin:10px;
+                cursor: pointer;
+                display: flex;
+                flex-wrap: wrap;
+                border: 2px solid brown; 
+                border-radius: 5px;
+        }
+        .cell{
+            height: 50px;
+            width: 50px;
+            background-color:white;
+            margin:10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #055c84; 
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe <h3>(Two Player)</h3></h1>
+    <div class="board">
+        <div class="cell" id="1"></div><div class="cell" id="2"></div><div class="cell" id="3"></div>
+        <div class="cell" id="4"></div><div class="cell" id="5"></div><div class="cell" id="6"></div>
+        <div class="cell" id="7"></div><div class="cell" id="8"></div><div class="cell" id="9"></div>
+
+
+    </div>
+    <p>Player A Turn</p>
+    <p>Player B Turn</p>
+    
+</body>
+</html>
