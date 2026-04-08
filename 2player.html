@@ -7,11 +7,12 @@
     <style>
         *{
             background-color: lightpink;
+            text-align: center;
         }
         .board {
                 height: 230px;
                 width: 220px;
-                margin:10px;
+                margin-left:650px;
                 cursor: pointer;
                 display: flex;
                 flex-wrap: wrap;
@@ -32,7 +33,7 @@
         }
     </style>
 </head>
-<body>
+<body><br><br><br><br>
     <h1>Tic Tac Toe <h3>(Two Player)</h3></h1>
     <div class="board">
         <div class="cell" id="1"></div><div class="cell" id="2"></div><div class="cell" id="3"></div>
@@ -40,8 +41,8 @@
         <div class="cell" id="7"></div><div class="cell" id="8"></div><div class="cell" id="9"></div>
 
 
-    </div>
-    <div id="current">Player X Turn</div>
+    </div><br>
+    <div id="current">Player X Turn</div><br>
     <button id="rst-btn">Reset Game</button>
     <script>
         const cells = document.querySelectorAll(".cell");
@@ -60,7 +61,7 @@
 
             if (board[index] === "" && isgame === true) {
                 textcell(cell, index);
-                won(); 
+                won(); htrdkuytulytmtkytri795gnbhgfjy
             }
         }
 

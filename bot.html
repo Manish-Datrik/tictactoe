@@ -7,12 +7,13 @@
     <style>
         *{
             background-color: lightblue;
+            text-align: center;
 
         }
         .board{
-            height: 230px;
-            width:230px;
-            margin:10px;
+            height: 220px;
+            width:220px;
+            margin-left:650px;
             cursor: pointer;
             display:flex;
             flex-wrap: wrap;
@@ -46,12 +47,93 @@
         <div class="cell" id="1"></div><div class="cell" id="2"></div><div class="cell" id="3"></div>
         <div class="cell" id="4"></div><div class="cell" id="5"></div><div class="cell" id="6"></div>
         <div class="cell" id="7"></div><div class="cell" id="8"></div><div class="cell" id="9"></div>
-    </div>
-    <div id="current">Player X Turn</div>
+    </div><br>
+    <div id="current">Player X Turn</div><br>
     <button id="rst-btn">Reset Game</button>
 
     <script>
-        
+        const cells = document.querySelectorAll(".cell");
+        const current = document.getElementById("current");
+        const rstbtn = document.getElementById("rst-btn");
+
+        let board = ["","","","","","","","",""];
+        let a = 'X';
+        let isgame = true;
+
+        const wingame= [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        cells.forEach(cell=>cell.addEventListener("click",human));
+        function human(e){
+            let index = e.target.id-1;
+             if(board[index] !==""|| isgame === false){
+                return;
+             }
+             board[index]=a;
+             e.target.innerText=a;
+
+             win_check();
+
+             if(isgame === true){
+                current.innerText = "Bot Turn";
+                setTimeout(bot,500);
+             }
+
+        }
+        function win_check(){
+            for(let val of wingame){
+                let a = board[val[0]];
+                let b = board[val[1]];
+                let c = board[val[2]];
+
+                if(a !=="" && a===b&&b===c){
+                    current.innerText = "player" +a+"win";
+                    isgame= false;
+                    return;
+                }
+            }
+            if(!board.includes("")){
+                current.innerText = "draw Game";
+                isgame = false;
+                return;
+            }
+        }
+        function bot(){
+             
+            let khali = [];
+            
+            let b = board.length;
+            for(let i = 0;i<b;i++){
+                if(board[i]=== ""){
+                    khali.push(i);
+                }
+            }
+            let k = khali.length
+            if(k ===0){
+                return;
+            }
+            let rand = khali[Math.floor(Math.random()*k)];
+            board[rand] = "O";
+            document.getElementById(rand+1).innerText="O";
+
+            win_check();
+            if(isgame === true){
+                current.innerText = "Player X Turn";
+
+            }
+        }
+        rstbtn.addEventListener("click",reset);
+        function reset(){
+            board = ["","","","","","","","",""];
+            isgame = true;
+            a="X";
+            cells.forEach(cell=>{
+
+                cell.innerText = "";
+            }
+            );
+            current.innerText = "player X turn";
+
+        }
+
     </script>
 </body>
 </html>
