@@ -41,8 +41,71 @@
 
 
     </div>
-    <p>Player A Turn</p>
-    <p>Player B Turn</p>
-    
+    <div id="current">Player X Turn</div>
+    <button id="rst-btn">Reset Game</button>
+    <script>
+        const cells = document.querySelectorAll(".cell");
+        const current = document.getElementById("current");
+        const rst = document.getElementById("rst-btn");
+        let isgame = true;
+        let currentPlayer = "X";
+        let board = ["", "", "", "", "", "", "", "", ""];
+        let win = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+
+        cells.forEach(cell => cell.addEventListener("click", handleClick));
+
+        function handleClick(e) {
+            let cell = e.target;
+            let index = parseInt(cell.id) - 1;
+
+            if (board[index] === "" && isgame === true) {
+                textcell(cell, index);
+                won(); 
+            }
+        }
+
+        function won() {
+            for (let val of win) {
+                let a = board[val[0]];
+                let b = board[val[1]];
+                let c = board[val[2]];
+                if (a !== "") {
+                    if (a == b && b == c) {
+                        isgame = false;
+                        current.innerText = "Player " + a + " Won!";
+                        return;
+                    }
+                }
+            }
+            if (!board.includes("")) {
+                isgame = false;
+                current.innerText = "Draw!";
+                return;
+            }
+        }
+
+
+        rst.addEventListener("click", reset);
+        
+        function textcell(cell, index) {
+            board[index] = currentPlayer;
+            cell.innerText = currentPlayer;
+            currentPlayer = currentPlayer === "X" ? "O" : "X";
+            if (isgame) {
+                current.innerText = "Player " + currentPlayer + " Turn";
+            }
+        }
+
+        function reset() {
+            board = ["", "", "", "", "", "", "", "", ""];
+            isgame = true;
+            currentPlayer = "X";
+            current.innerText = "Player X Turn";
+            cells.forEach(
+                cell => cell.innerText = ""
+            );
+        }
+
+    </script>
 </body>
-</html>
+</html> 
