@@ -31,6 +31,10 @@
         border: 2px solid black;
         border-radius: 5px;
      }
+     h1{
+        text-decoration: underline;
+        font-size:40px ;
+     }
      p{
         font-size: large;
      }
@@ -50,21 +54,22 @@
     <button id="rst-btn">Reset Game</button>
     <script>
         const cells=document.querySelectorAll(".cell");
-        const current= current= document.getElementById("current");
+        const current = document.getElementById("current");
         const rstbtn = document.getElementById("rst-btn");
         
         let board = ["","","","","","","","",""];
         let isgame = true;
+        let botTimeout;
         const p = "X"
-        const win = [[0,1,2],[3,4,5],[6,7,8],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        const win = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
         function pp(e){
             let i = e.target.id-1;
 
-            if(board[index] !==""|| isgame===false){
+            if (board[i] !== "" || isgame === false) {
                 return;
             }
-            board[index]=p;
-            e.target.innerText= p;
+            board[i] = p;
+            e.target.innerText = p;
 
             if(win_check(board , p)){
                 current.innerText=" player has won";
@@ -77,7 +82,7 @@
                 return;
             }
             current.innerText="";
-            setTimeout(bot,500);
+            botTimeout = setTimeout(botm, 500);
 
         }
         let bot = "O";
@@ -99,7 +104,7 @@
             board[m]=bot;
             document.getElementById(m+1).innerText=bot;
 
-            if(win_cehck(board,bot)){
+            if (win_check(board, bot)) {
                 current.innerText="You have lost the match";
                 isgame=false;
                 return;
@@ -117,11 +122,14 @@
             for (let i = 0;i<b;i++){
                 if(board1[i]==="")khali.push(i);
             }
-            if(win_check(board1,p)){
-                return {score:-10};
+            if (win_check(board1, p)) {
+                return { score: -10 };
             }
-            if(win_check(board1,bot)){
-                return {score:10}
+            if (win_check(board1, bot)) {
+                return { score: 10 }
+            }
+            if (khali.length === 0) {
+                return { score: 0 };
             }
             let moves = [];
 
@@ -135,25 +143,40 @@
                 }else {
                     move.score = a(board1, bot).score;
                 }
-                board1[khali[i]]="";
+                board1[khali[i]]=""; 
                 moves.push(move);
             }
             let nice = 0;
-            if(player ===bot){
+            if (player === bot) {
                 let max_score = -100;
-                for(let i = 0;i<moves.length;i++){
-                    if(moves[i].score>max_score){
-                     max_score = moves[i].score;
-                    nice = i;   
+                for (let i = 0; i < moves.length; i++) {
+                    if (moves[i].score > max_score) {
+                        max_score = moves[i].score;
+                        nice = i;
                     }
-                    
+                }
+            } else {
+                let min_score = 1000;
+                for (let i = 0; i < moves.length; i++) {
+                    if (moves[i].score < min_score) {
+                        min_score = moves[i].score;
+                        nice = i;
+                    }
                 }
             }
-            return moves[nice];
+            return moves[nice]; 
         }
-        cells.forEach(cell=>{
-            cell.addEventListener("click",pp)
+        cells.forEach(cell => {
+            cell.addEventListener("click", pp)
         });
+        rstbtn.addEventListener("click", () => {
+            clearTimeout(botTimeout);
+            board = ["", "", "", "", "", "", "", "", ""];
+            isgame = true;
+            cells.forEach(cell => cell.innerText = "");
+            current.innerText = "Player X Turn";
+        });
+        
     </script>
 </body>
 </html>
