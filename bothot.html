@@ -49,7 +49,55 @@
     <div id="current">Player X Turn</div>
     <button id="rst-btn">Reset Game</button>
     <script>
+        const cells=document.querySelectorAll(".cell");
+        const current= current= document.getElementById("current");
+        const rstbtn = document.getElementById("rst-btn");
         
+        let board = ["","","","","","","","",""];
+        let isgame = true;
+        const p = "X"
+        const win = [[0,1,2],[3,4,5],[6,7,8],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+        function pp(e){
+            let i = e.target.id-1;
+
+            if(board[index] !==""|| isgame===false){
+                return;
+            }
+            board[index]=p;
+            e.target.innerText= p;
+
+            if(win_check(board , p)){
+                current.innerText=" player has won";
+                isgame = false;
+                return;
+            }
+            if(!board.includes("")){
+                current.innerText="Match has been Draw";
+                isgame=false;
+                return;
+            }
+            current.innerText=""
+            setTimeout(bot,500);
+
+        }
+        let bot = "O"
+        function botm(){
+            let mm q= a(board,bot).index;
+            board[m]=bot;
+            document.getElementById(m+1).innerText=bot;
+
+            if(win_cehck(board,bot)){
+                current.innerText="You have lost the match";
+                isgame=false;
+                return;
+            }
+            if(!board.includes("")){
+                current.innerText="draw";
+                isgame=false;
+                return;
+            }
+            current.innerText="Player x turn";
+        }
     </script>
 </body>
 </html>
