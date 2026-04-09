@@ -1,4 +1,4 @@
-Tic Tac Toe Game
+Tic Tac Toe Game https://manish-datrik.github.io/tictactoe/
 
 I built this game as a simple digital version of the classic Tic Tac Toe game. It is an interactive browser game where players place X and O on a 3×3 grid and try to make a straight line before their opponent.
 
