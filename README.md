@@ -17,8 +17,11 @@ The goal is to place three matching symbols in a row before the opponent. If all
 Why I made this
 
 I created this project to practice game logic, turn-based gameplay, and basic AI using JavaScript.
+<img width="1919" height="899" alt="image" src="https://github.com/user-attachments/assets/01cea89c-6cbf-4f9b-9d2b-eb11656ff06f" />
+
 
 The Tech behind the game
+
 
 HTML5: Board layout and interface
 CSS3: Styling of the game board and cells
