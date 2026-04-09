@@ -76,13 +76,26 @@
                 isgame=false;
                 return;
             }
-            current.innerText=""
+            current.innerText="";
             setTimeout(bot,500);
 
         }
-        let bot = "O"
+        let bot = "O";
+        function win_check(board,p){
+            for(let val of win){
+                let a = board[val[0]];
+                let b = board[val[1]];
+                let c = board[val[2]];
+                if(a===p&& b===p&&c===p){
+                return true;
+            }
+            
+            }
+
+            return false;
+        }
         function botm(){
-            let mm q= a(board,bot).index;
+            let m = a(board,bot).index;
             board[m]=bot;
             document.getElementById(m+1).innerText=bot;
 
@@ -98,6 +111,49 @@
             }
             current.innerText="Player x turn";
         }
+        function a(board1,player){
+            let khali=[];
+            let b = board1.length
+            for (let i = 0;i<b;i++){
+                if(board1[i]==="")khali.push(i);
+            }
+            if(win_check(board1,p)){
+                return {score:-10};
+            }
+            if(win_check(board1,bot)){
+                return {score:10}
+            }
+            let moves = [];
+
+            for(let i = 0;i<khali.length;i++){
+                let move = {};
+                move.index= khali[i];
+                board1[khali[i]] = player;
+
+                if(player === bot){
+                    move.score = a(board1,p).score;
+                }else {
+                    move.score = a(board1, bot).score;
+                }
+                board1[khali[i]]="";
+                moves.push(move);
+            }
+            let nice = 0;
+            if(player ===bot){
+                let max_score = -100;
+                for(let i = 0;i<moves.length;i++){
+                    if(moves[i].score>max_score){
+                     max_score = moves[i].score;
+                    nice = i;   
+                    }
+                    
+                }
+            }
+            return moves[nice];
+        }
+        cells.forEach(cell=>{
+            cell.addEventListener("click",pp)
+        });
     </script>
 </body>
 </html>
