@@ -5,39 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe(HARD BOT)</title>
     <style>
-     *{
-        background-color: orangered;
-        text-align: center;
-     }
-     .board{
-        height: 220px;
-        width:220px;
-        margin-left: 650px;
-        cursor: pointer;
-        display: flex;
-        flex-wrap: wrap;
-        border: 2px solid black;
-        border-radius: 5px;
-     }
-     .cell{
-        height: 50px;
-        width: 50px;
-        background-color: aliceblue;
-        margin: 10px;
-        cursor: pointer;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        border: 2px solid black;
-        border-radius: 5px;
-     }
-     h1{
-        text-decoration: underline;
-        font-size:40px ;
-     }
-     p{
-        font-size: large;
-     }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: orangered;
+            text-align: center;
+            font-family: sans-serif;
+        }
+        .board {
+            width: min(260px, 95vw);
+            margin: 20px auto;
+            padding: 10px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            border: 2px solid black;
+            border-radius: 5px;
+            background-color: #f9ece8;
+        }
+        .cell {
+            aspect-ratio: 1;
+            min-height: 50px;
+            background-color: aliceblue;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            border-radius: 5px;
+            font-size: 1.5rem;
+        }
+        h1 {
+            text-decoration: underline;
+            font-size: 40px;
+        }
+        p {
+            font-size: large;
+        }
     </style>
 </head>
 <body>
