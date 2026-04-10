@@ -10,14 +10,15 @@
             text-align: center;
         }
         .board {
-                height: 230px;
-                width: 220px;
-                margin-left:650px;
-                cursor: pointer;
-                display: flex;
-                flex-wrap: wrap;
-                border: 2px solid brown; 
-                border-radius: 5px;
+            width: min(260px, 95vw);
+            margin: 20px auto;
+            padding: 10px;
+            cursor: pointer;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            border: 2px solid brown;
+            border-radius: 5px;
         }
         .cell{
             height: 50px;
